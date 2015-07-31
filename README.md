@@ -1,8 +1,6 @@
 # PicturepathAUI
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/picturepath_aui`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A ruby wrapper around the PicturePath AUI API. PicturePath provides an API to post virtual tours to Realtor.com and other real estate websites.
 
 ## Installation
 
@@ -22,7 +20,43 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+We want to keep a simple API to make requests to the PicturePath AUI API.
+
+Here's an example on how to do the most basic operation.
+
+```ruby
+# First, configure your client connection
+client = PicturepathAUI::Client.new(username: "username", password: "password")
+
+# Next, build your request payload
+payload = PicturepathAUI::Request.new({
+  site: 2845, order_number: 1234, product_line: "LINK",
+  street1: "742 Evergreen Terrace", street2: nil, city: "Springfield",
+  state: "IL", zip_code: 62701, mls_id: 5678,
+  tour_url: "http://www.realestateagent.com/tours?id=12345678"
+})
+
+# you can perform a check request (for validation or testing purposes)
+client.check(payload)
+
+# to actually send the tour data to Realtor.com, use the :submit method
+client.submit(payload)
+```
+
+### API Version
+
+By default, the `PicturepathAUI::Client` will use the PicturePath AUI API
+version 5.1, however, you can change the API version to use when you
+instantiate a client:
+
+```ruby
+client = PicturepathAUI::Client.new(
+  username: "username", password: "password", api_version: "5.0"
+)
+```
+
+Of course you will need to check the documentation as to the fields required
+to populate your `PicturepathAUI::Request` object for the API version you choose.
 
 ## Development
 
@@ -32,7 +66,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/picturepath_aui. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/antillas21/picturepath_aui. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
