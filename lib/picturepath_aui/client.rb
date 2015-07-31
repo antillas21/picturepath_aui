@@ -1,7 +1,7 @@
 module PicturepathAUI
   class Client
     attr_reader :api_version
-    
+
     def initialize(attributes = {})
       @username = attributes.fetch(:username)
       @password = attributes.fetch(:password)
