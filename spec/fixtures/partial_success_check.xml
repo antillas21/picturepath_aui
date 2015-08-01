@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<AUI_RESPONSE VERSION="5.0">
+  <STATUS VALUE="PARTIAL SUCCESS" ACTION="CHECK">
+    <MESSAGE CODE="3" DESCRIPTION="Tour checked successfully - problem with REALTOR.COM® Distribution. See warning messages."/>
+    <MESSAGE CODE="103" DESCRIPTION="Address supplied does not match for listing R1981886; distribution to REALTOR.com® did not happen. For Virtual Tour support please send an email to vtsupport@move.com or contact Customer Care at 800-878-4166 for assistance if further explanation is required."/>
+  </STATUS>
+  <PRODUCTS>
+    <PRODUCT_LINE>LINK</PRODUCT_LINE>
+  </PRODUCTS>
+  </IDENTIFIERS>
+    <ID1 VALUE="05-017001" STATUS="SUCCESS"/>
+    <ID2 VALUE="R1981886" STATUS="ERROR"/>
+  </IDENTIFIERS>
+</AUI_RESPONSE>

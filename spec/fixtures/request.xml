@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<AUI_SUBMISSION VERSION="5.0">
+  <TOUR>
+    <CUSTREFNUM></CUSTREFNUM>
+    <ORDERNUM></ORDERNUM>
+    <PRODUCT_SKU></PRODUCT_SKU>
+    <PRODUCT_LINE>LINK</PRODUCT_LINE>
+    <ADDRESS>
+      <STREET1>742 Evergreen Terrace</STREET1>
+      <STREET2/>
+      <CITY>Springfield</CITY>
+      <STATE>IL</STATE>
+      <COUNTRY CODE="US"/>
+      <ZIP>62701</ZIP>
+    </ADDRESS>
+    <IDENTIFIERS>
+      <ID1 VALUE="1234569" TYPE="MLSID"/>
+      <ID2 VALUE="" TYPE="MLSID"/>
+    </IDENTIFIERS>
+    <DISTRIBUTION>
+      <SITE>2845</SITE>
+    </DISTRIBUTION>
+    <TOUR_URL> http://www.virtualtourco.com/tour.aspx?tourid=12345 </TOUR_URL>
+  </TOUR>
+</AUI_SUBMISSION>
