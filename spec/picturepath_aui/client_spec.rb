@@ -25,4 +25,24 @@ RSpec.describe PicturepathAUI::Client do
       expect(client.api_version).to eq("5.0")
     end
   end
+
+  describe '#check' do
+    let(:client) { PicturepathAUI::Client.new(username: "username", password: "password") }
+
+    it 'requires a payload' do
+      expect { client.check }.to raise_error(ArgumentError)
+    end
+
+    it 'performs a :check request to AUI API'
+  end
+
+  describe '#submit' do
+    let(:client) { PicturepathAUI::Client.new(username: "username", password: "password") }
+
+    it 'requires a payload' do
+      expect { client.submit }.to raise_error(ArgumentError)
+    end
+
+    it 'performs a :submit request to AUI API'
+  end
 end
