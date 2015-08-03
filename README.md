@@ -1,5 +1,7 @@
 # PicturepathAUI
 
+[![Build Status](https://travis-ci.org/antillas21/picturepath_aui.svg?branch=master)](https://travis-ci.org/antillas21/picturepath_aui)
+
 A ruby wrapper around the PicturePath AUI API. PicturePath provides an API to post virtual tours to Realtor.com and other real estate websites.
 
 ## Installation
