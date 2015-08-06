@@ -46,16 +46,24 @@ client.check(payload)
 client.submit(payload)
 ```
 
+### Requests
+
+You don't need to instantiate a `PicturepathAUI::Request` object to perform a
+`:check or :submit` request to the PicturePath AUI API, you can pass XML
+straight to these methods. However, we thought having a helper class would
+greatly ease building the XML document required by PicturePath :wink:
+
 ### API Version
 
-By default, the `PicturepathAUI::Client` will use the PicturePath AUI API
+By default, the `PicturepathAUI::Request` will use the PicturePath AUI API
 version 5.1, however, you can change the API version to use when you
-instantiate a client:
+build out a request:
 
 ```ruby
-client = PicturepathAUI::Client.new(
-  username: "username", password: "password", api_version: "5.0"
-)
+request = PicturepathAUI::Request.new({
+  api_version: "5.0",
+  # ...other attributes...
+})
 ```
 
 Of course you will need to check the documentation as to the fields required
