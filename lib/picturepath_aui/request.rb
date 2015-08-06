@@ -19,13 +19,19 @@ module PicturepathAUI
     end
 
     def to_xml
-      output = ""
-      _xml = Builder::XmlMarkup.new(target: output, indent: 2)
+      xml = build_xml_document
+      return xml
+    end
+
+    private
+
+    def build_xml_document
+      _xml = Builder::XmlMarkup.new(target: "", indent: 2)
       _xml.instruct!
       _xml.AUI_SUBMISSION(VERSION: api_version) {
         _xml.TOUR {
           _xml.CUSTREFNUM customer_number
-          (order_number != nil) && (_xml.ORDERNUM order_number)
+          _xml.ORDERNUM order_number
           _xml.PRODUCT_LINE product_line
           _xml.ADDRESS {
             _xml.STREET1 street1
@@ -47,7 +53,6 @@ module PicturepathAUI
           _xml.TOUR_URL tour_url
         }
       }
-      return output
     end
   end
 end
