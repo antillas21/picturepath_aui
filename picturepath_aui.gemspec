@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "nori"
   spec.add_dependency "nokogiri"
+  spec.add_dependency "builder", "~> 3.2"
 end
