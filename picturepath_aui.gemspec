@@ -33,5 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
 
   spec.add_dependency "nori"
-  spec.add_dependency "rubysl-rexml"
+  spec.add_dependency "nokogiri"
 end
