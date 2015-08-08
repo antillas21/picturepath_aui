@@ -2,7 +2,6 @@
 <AUI_RESPONSE VERSION="5.0">
   <ORDER_NUMBER></ORDER_NUMBER>
   <STATUS VALUE="ERROR" ACTION="SUBMIT">
-    <MESSAGE CODE="4000" DESCRIPTION="Order already exists"> Please use edit (order number CNC6N464).
-    </MESSAGE>
+    <MESSAGE CODE="4000" DESCRIPTION="Order already exists">Please use edit (order number CNC6N464).</MESSAGE>
   </STATUS>
 </AUI_RESPONSE>

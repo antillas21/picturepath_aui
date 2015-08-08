@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <AUI_RESPONSE VERSION="5.0">
   <STATUS VALUE="SUCCESS" ACTION="CHECK">
-    <MESSAGE CODE="2" DESCRIPTION="Tour checked successfully">
+    <MESSAGE CODE="2" DESCRIPTION="Tour checked successfully"/>
   </STATUS>
   <PRODUCTS>
     <PRODUCT_LINE>LINK</PRODUCT_LINE>
