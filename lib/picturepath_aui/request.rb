@@ -47,7 +47,7 @@ module PicturepathAUI
           }
           _xml.DISTRIBUTION {
             [site].flatten.each do |s|
-              _xml.SITE site
+              _xml.SITE s
             end
           }
           _xml.TOUR_URL tour_url

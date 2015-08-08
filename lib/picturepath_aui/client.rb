@@ -12,10 +12,12 @@ module PicturepathAUI
     end
 
     def check(payload)
+      payload = payload.to_xml if payload.is_a?(Request)
       post_request(:check, payload)
     end
 
     def submit(payload)
+      payload = payload.to_xml if payload.is_a?(Request)
       post_request(:submit, payload)
     end
 
