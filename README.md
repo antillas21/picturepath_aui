@@ -25,7 +25,7 @@ Or install it yourself as:
 
 We want to keep a simple API to make requests to the PicturePath AUI API.
 
-Here's an example on how to do the most basic operation.
+Here's an example on how to walk the easiest path:
 
 ```ruby
 # First, configure your client connection
@@ -40,18 +40,87 @@ payload = PicturepathAUI::Request.new({
 })
 
 # you can perform a check request (for validation or testing purposes)
-client.check(payload)
+response = client.check(payload)
 
 # to actually send the tour data to Realtor.com, use the :submit method
-client.submit(payload)
+response = client.submit(payload)
+
+# either method will return a PicturepathAUI::Response object
 ```
 
 ### Requests
 
 You don't need to instantiate a `PicturepathAUI::Request` object to perform a
 `:check or :submit` request to the PicturePath AUI API, you can pass XML
-straight to these methods. However, we thought having a helper class would
-greatly ease building the XML document required by PicturePath :wink:
+straight to these methods. Example, the following are also valid requests:
+
+```ruby
+xml = File.open("path/to/xml_file.xml").read
+client = PicturepathAUI::Client.new(username: "username", password: "password")
+response = client.check(xml)
+response = client.submit(xml)
+
+str_xml = <<-XML
+<?xml version="1.0" encoding="UTF-8"?>
+<AUI_SUBMISSION VERSION="5.1">
+<TOUR>
+<CUSTREFNUM/>
+<ORDERNUM>1234</ORDERNUM>
+<PRODUCT_LINE>LINK</PRODUCT_LINE>
+<ADDRESS>
+<STREET1>742 Evergreen Terrace</STREET1>
+<STREET2/>
+<CITY>Springfield</CITY>
+<STATE>IL</STATE>
+<COUNTRY CODE="USA"/>
+<ZIP>62701</ZIP>
+</ADDRESS>
+<IDENTIFIERS>
+<ID1 VALUE="1234569" TYPE="MLSID"/>
+<ID2 VALUE="" TYPE="MLSID"/>
+</IDENTIFIERS>
+<DISTRIBUTION>
+<SITE>2845</SITE>
+</DISTRIBUTION>
+<TOUR_URL>http://www.virtualtourco.com/tour.aspx?tourid=12345</TOUR_URL>
+</TOUR>
+</AUI_SUBMISSION>
+XML
+
+client = PicturepathAUI::Client.new(username: "username", password: "password")
+response = client.check(str_xml)
+response = client.submit(str_xml)
+```
+
+However, we thought having a helper class would greatly ease building the XML
+document required by PicturePath :wink:
+
+If building your request through a `PicturepathAUI::Request` object,
+take in mind that:
+
+* `site` key can accept a single value or an Array of values.
+Though PicturePath documentation clearly states that you can provide multiple
+values, they only support `2845`. I don't know what's the point in doing so,
+but still, they "support it", then we allow you to do so.
+* The `PicturepathAUI::Request` object will assing `nil` to any keys you omit in the Hash. Example: You don't pass in a `:street2` key and value, then,
+`Request.street2` will return nil, and the corresponding XML tag will render
+empty (`<STREET2/>`).
+
+### Responses
+
+You will get a `PicturepathAUI::Response` object from a `#check` or `#submit`
+action.
+
+The Response object responds to the following methods:
+
+* `raw`: stores the raw XML response received from the PicturePath AUI API.
+* `data`: stores a parsed version of raw XML in a Hash structure.
+* `order_number`: stores ORDER_NUMBER value if a Submit request was performed.
+* `status`: string value for the overall response status.
+* `messages`: Array of strings with all messages returned in the response.
+* `success?`: true if request was successful.
+* `error?`: true if request response errored out.
+* `warning?`: true if request response returned warning.
 
 ### API Version
 
