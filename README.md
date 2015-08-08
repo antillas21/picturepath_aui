@@ -5,6 +5,10 @@
 
 A ruby wrapper around the PicturePath AUI API. PicturePath provides an API to post virtual tours to Realtor.com and other real estate websites.
 
+This gem provides the same functionality than the
+[picturepath](http://picturepath.rubyforge.org/) gem. Only with more
+flexibility and an updated codebase.
+
 ## Installation
 
 Add this line to your application's Gemfile:
