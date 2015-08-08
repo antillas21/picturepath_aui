@@ -21,25 +21,25 @@ RSpec.describe PicturepathAUI::Response do
 
   describe 'statuses' do
     context '#success?' do
-      it 'status_code is 0' do
+      it 'status is 0' do
         xml = File.open('./spec/fixtures/success_submission.xml').read
         response = PicturepathAUI::Response.new(xml)
         expect(response.success?).to eq(true)
       end
 
-      it 'status_code is 1' do
+      it 'status is 1' do
         xml = File.open('./spec/fixtures/partial_success_submission.xml').read
         response = PicturepathAUI::Response.new(xml)
         expect(response.success?).to eq(true)
       end
 
-      it 'status_code is 2' do
+      it 'status is 2' do
         xml = File.open('./spec/fixtures/success_check.xml').read
         response = PicturepathAUI::Response.new(xml)
         expect(response.success?).to eq(true)
       end
 
-      it 'status_code is 3' do
+      it 'status is 3' do
         xml = File.open('./spec/fixtures/partial_success_check.xml').read
         response = PicturepathAUI::Response.new(xml)
         expect(response.success?).to eq(true)
@@ -47,14 +47,14 @@ RSpec.describe PicturepathAUI::Response do
     end
 
     context '#error?' do
-      it 'status_code not in warning' do
+      it 'status not in warning' do
         xml = File.open('./spec/fixtures/failed_check.xml').read
         response = PicturepathAUI::Response.new(xml)
         expect(response.error?).to eq(true)
         expect(response.success?).to eq(false)
       end
 
-      it 'status_code not in success' do
+      it 'status not in success' do
         xml = File.open('./spec/fixtures/failed_submission.xml').read
         response = PicturepathAUI::Response.new(xml)
         expect(response.error?).to eq(true)

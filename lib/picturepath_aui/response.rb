@@ -3,30 +3,30 @@ require 'nokogiri'
 
 module PicturepathAUI
   class Response
-    attr_reader :raw, :data, :status_code, :messages, :order_number
+    attr_reader :raw, :data, :status, :messages, :order_number
 
     def initialize(xml)
       @raw = xml
       @data = parser.parse(xml)[:aui_response]
-      @status_code = extract_status(@data)
+      @status = extract_status(@data)
       @messages = extract_messages(@data)
       @order_number = extract_order_number(@data)
     end
 
     def success?
-      ["SUCCESS", "PARTIAL SUCCESS"].include?(status_code)
+      ["SUCCESS", "PARTIAL SUCCESS"].include?(status)
     end
 
     def error?
-      status_code == "ERROR"
+      status == "ERROR"
     end
 
     def warning?
-      ["WARNING", "GENERAL WARNING"].include?(status_code)
+      ["WARNING", "GENERAL WARNING"].include?(status)
     end
 
     def system_unavailable?
-      status_code == "SYSTEM UNAVAILABLE"
+      status == "SYSTEM UNAVAILABLE"
     end
 
     private
@@ -41,8 +41,8 @@ module PicturepathAUI
 
     def extract_messages(data)
       messages = [data[:status][:message]].flatten.map do |message|
-        return [message] if message.is_a?(String)
-        message[:@description]
+        return [message.strip] if message.is_a?(String)
+        message[:@description].strip
       end
 
       return messages.flatten
@@ -55,7 +55,8 @@ module PicturepathAUI
     end
 
     def from_status_message(data)
-      /order number (\w+)/.match(data[:status][:message].to_s)[1]
+      order_info = /order number (\w+)/.match(data[:status][:message].to_s)
+      return order_info[1] if order_info.is_a?(MatchData)
     end
 
     def is_check_request?(data)
