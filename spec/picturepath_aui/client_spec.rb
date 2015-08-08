@@ -5,6 +5,7 @@ module PicturepathAUI
     private
 
     def post_request(action, payload)
+      payload = payload.to_xml if payload.respond_to?(:to_xml)
       url = (api_url + aui_default_params(action) + payload_params(payload)).to_s
       return url
     end

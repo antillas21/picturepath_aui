@@ -12,12 +12,10 @@ module PicturepathAUI
     end
 
     def check(payload)
-      payload = payload.to_xml if payload.is_a?(Request)
       post_request(:check, payload)
     end
 
     def submit(payload)
-      payload = payload.to_xml if payload.is_a?(Request)
       post_request(:submit, payload)
     end
 
@@ -28,8 +26,10 @@ module PicturepathAUI
     end
 
     def post_request(action, payload)
+      payload = payload.to_xml if payload.is_a?(Request)
       url = (api_url + aui_default_params(action) + payload_params(payload)).to_s
-      return open(url).read
+      xml = open(url).read
+      return Response.new(xml)
     end
 
     def api_url
